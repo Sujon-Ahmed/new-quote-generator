@@ -12,4 +12,10 @@ window.onload = function () {
 function main() {
     let newQuoteBtn = document.getElementById('new-quote-btn');
     let quoteBody = document.getElementById('quote-body');
+
+    newQuoteBtn.addEventListener('click', function () {
+        let index = Math.floor(Math.random() * defaultQuotes.length);
+        let quote = defaultQuotes[index];
+        quoteBody.innerText = quote;
+    });
 }
