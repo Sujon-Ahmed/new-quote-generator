@@ -45,3 +45,15 @@ body {
     border: 1px solid #999;
     margin-bottom: 10px;
 }
+.action {
+    display: flex;
+    position: absolute;
+    bottom: 31%;
+    right: 26%;
+}
+#copy-btn {
+    margin-left: 10px;
+}
+#speak-btn, #copy-btn {
+    cursor: pointer;
+}

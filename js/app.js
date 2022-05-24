@@ -20,10 +20,35 @@ window.onload = function () {
 function main() {
     let newQuoteBtn = document.getElementById('new-quote-btn');
     let quoteBody = document.getElementById('quote-body');
+    let speakBtn = document.getElementById('speak-btn');
+    let copyBtn = document.getElementById('copy-btn');
 
     newQuoteBtn.addEventListener('click', function () {
         let index = Math.floor(Math.random() * defaultQuotes.length);
         let quote = defaultQuotes[index];
-        quoteBody.innerText = quote;
+        quoteBody.innerText = quote;  
+        let utterance = new SpeechSynthesisUtterance(quote);
+        speakBtn.onclick = () => {
+            speechSynthesis.speak(utterance);
+        }
+        copyBtn.addEventListener('click', function() {
+            window.navigator.clipboard.writeText(quote);
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              
+              Toast.fire({
+                icon: 'success',
+                title: 'Copied Successfully!'
+              })
+        });
     });
 }
